@@ -1,0 +1,18 @@
+// Assignment Section 4.1 example
+Employees(EID, Name, Age, DID) = {
+  E1, John, 32, D1
+  E2, Alice, 28, D2
+  E3, Bob, 29, D1
+}
+
+// Small inputs for the join and self-join examples
+Emp(EID, MgrID, DID) = {
+  E1, E1, D1
+  E2, E1, D2
+  E3, E2, D1
+}
+
+Dept(DID, Title) = {
+  D1, Sales
+  D2, Support
+}

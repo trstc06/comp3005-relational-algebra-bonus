@@ -1,0 +1,115 @@
+{"group": "environment", "date": "2026-09-23T12:33:36.260400", "python": "3.13.1", "platform": "macOS-26.6-arm64-arm-64bit-Mach-O"}
+{"group": "join", "n": 1000, "m": 1000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.3044603751040995, "output_rows": 1000}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 1, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.00030649988912045956, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0007149581797420979, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 2, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.00032654195092618465, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006930418312549591, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 3, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.0003247500862926245, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006535830907523632, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 4, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.00030095898546278477, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006582080386579037, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 5, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.0003062079194933176, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006426249165087938, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 6, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.00029416708275675774, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006526249926537275, "output_rows": 1}
+{"group": "select", "n": 1000, "m": 1000, "matches": 1, "query": "select[a<500](R)", "trial": 7, "join_pairs": 0, "selection_rows": 1000, "wall_seconds": 0.0003239999059587717, "output_rows": 500}
+{"group": "project", "n": 1000, "m": 1000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0006521658506244421, "output_rows": 1}
+{"group": "join", "n": 2000, "m": 2000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 4000000, "selection_rows": 4000000, "wall_seconds": 1.2172723750118166, "output_rows": 2000}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.000643041217699647, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0012989169918000698, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.000626416876912117, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0012752499897032976, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.000592332798987627, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.001293417066335678, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.0005858750082552433, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0012437920086085796, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.0005722080823034048, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0012590829282999039, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.0005988748744130135, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0013217919040471315, "output_rows": 1}
+{"group": "select", "n": 2000, "m": 2000, "matches": 1, "query": "select[a<1000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 2000, "wall_seconds": 0.0005881250835955143, "output_rows": 1000}
+{"group": "project", "n": 2000, "m": 2000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0012729170266538858, "output_rows": 1}
+{"group": "join", "n": 4000, "m": 4000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 16000000, "selection_rows": 16000000, "wall_seconds": 4.89950054208748, "output_rows": 4000}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0012195419985800982, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0026347078382968903, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0011728329118341208, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.002580209169536829, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0012146669905632734, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0025249579921364784, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.001145833870396018, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.002926083980128169, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0012214160524308681, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0025565840769559145, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0011884591076523066, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.002536832820624113, "output_rows": 1}
+{"group": "select", "n": 4000, "m": 4000, "matches": 1, "query": "select[a<2000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 4000, "wall_seconds": 0.0011624170001596212, "output_rows": 2000}
+{"group": "project", "n": 4000, "m": 4000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0025116668548434973, "output_rows": 1}
+{"group": "join", "n": 8000, "m": 8000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 64000000, "selection_rows": 64000000, "wall_seconds": 19.6701888339594, "output_rows": 8000}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.0026634999085217714, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005466916132718325, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.0024264580570161343, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005319125019013882, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.002392333000898361, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005674042040482163, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.002438249997794628, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005262000020593405, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.0023783750366419554, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005648209014907479, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.002344166859984398, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005171000026166439, "output_rows": 1}
+{"group": "select", "n": 8000, "m": 8000, "matches": 1, "query": "select[a<4000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 8000, "wall_seconds": 0.0023567089810967445, "output_rows": 4000}
+{"group": "project", "n": 8000, "m": 8000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.005506707821041346, "output_rows": 1}
+{"group": "join", "n": 16000, "m": 16000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 256000000, "selection_rows": 256000000, "wall_seconds": 80.54938600002788, "output_rows": 16000}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.0045957500115036964, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.010460915975272655, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.004695083014667034, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.010394667042419314, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.004620082909241319, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.010431834030896425, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.00457004108466208, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.013489207951352, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.07461441704072058, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.01996520790271461, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.012964499881491065, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.017013374948874116, "output_rows": 1}
+{"group": "select", "n": 16000, "m": 16000, "matches": 1, "query": "select[a<8000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 16000, "wall_seconds": 0.005494958022609353, "output_rows": 8000}
+{"group": "project", "n": 16000, "m": 16000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.013601250015199184, "output_rows": 1}
+{"group": "join", "n": 32000, "m": 32000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 1024000000, "selection_rows": 1024000000, "wall_seconds": 347.86866870801896, "output_rows": 32000}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009810625109821558, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.02072899998165667, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009509291034191847, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.02045870805159211, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009282832965254784, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.02030520816333592, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.00925204111263156, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.020225583110004663, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009126750053837895, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.020298624876886606, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009187249932438135, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.020172832999378443, "output_rows": 1}
+{"group": "select", "n": 32000, "m": 32000, "matches": 1, "query": "select[a<16000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 32000, "wall_seconds": 0.009364207973703742, "output_rows": 16000}
+{"group": "project", "n": 32000, "m": 32000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.020306084072217345, "output_rows": 1}
+{"group": "join", "n": 64000, "m": 64000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 4096000000, "selection_rows": 4096000000, "wall_seconds": 1408.4018726251088, "output_rows": 64000}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 1, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.020805375184863806, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 1, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.17400570795871317, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 2, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.01823637494817376, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 2, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.04082600004039705, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 3, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.01821266603656113, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 3, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.040811917046085, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 4, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.01821366581134498, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 4, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.0406354998704046, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 5, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.0182286249473691, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 5, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.041021332843229175, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 6, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.01835566619411111, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 6, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.04126675007864833, "output_rows": 1}
+{"group": "select", "n": 64000, "m": 64000, "matches": 1, "query": "select[a<32000](R)", "trial": 7, "join_pairs": 0, "selection_rows": 64000, "wall_seconds": 0.13609012495726347, "output_rows": 32000}
+{"group": "project", "n": 64000, "m": 64000, "matches": 1, "query": "project[b](R)", "trial": 7, "join_pairs": 0, "selection_rows": 0, "wall_seconds": 0.07339370786212385, "output_rows": 1}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 0, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.3284838330000639, "output_rows": 0}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 0, "query": "R join[R.b=S.b] S", "trial": 2, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.3078666250221431, "output_rows": 0}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 0, "query": "R join[R.b=S.b] S", "trial": 3, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.3161621249746531, "output_rows": 0}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.30227579199709, "output_rows": 1000}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 2, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.30511533305980265, "output_rows": 1000}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1, "query": "R join[R.b=S.b] S", "trial": 3, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.30264391703531146, "output_rows": 1000}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1000, "query": "R join[R.b=S.b] S", "trial": 1, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.482767750043422, "output_rows": 1000000}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1000, "query": "R join[R.b=S.b] S", "trial": 2, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.47713700006715953, "output_rows": 1000000}
+{"group": "match-rate", "n": 1000, "m": 1000, "matches": 1000, "query": "R join[R.b=S.b] S", "trial": 3, "join_pairs": 1000000, "selection_rows": 1000000, "wall_seconds": 0.5032109161838889, "output_rows": 1000000}
