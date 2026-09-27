@@ -4,11 +4,11 @@ Machine: MacBook Air (Mac15,13), Apple M3, 8 CPU cores, 16 GB memory. OS: macOS 
 
 ## Setup
 
-I used `experiment.py` to generate temporary relation files, load them with the engine and run the queries. R has columns `(a,b)` and S has `(b,c)`. All R rows have `b=0`; in the main experiment exactly one S row has `b=0`. Unique `a` and `c` values keep the input rows distinct. Each R row therefore matches one S row. This is controlled, skewed data rather than random data.
+I used `experiment.py` to generate relation files, load them and run the queries. R has columns `(a,b)` and S has `(b,c)`. All R rows have `b=0`; in the main experiment exactly one S row has `b=0`. The `a` and `c` values are unique, so the input rows stay distinct. Each R row matches one S row. This is a controlled dataset: many rows share the same join key.
 
-The engine's `perf_counter()` timer covers query evaluation, including condition binding, tuple construction, counting and result collection. File generation, loading, input duplicate removal, query parsing and printing are outside that timer. The join uses nested loops and passes every product pair to selection, keeping only matches. It does not build an intermediate table of all pairs. This changes storage, not the query tree or the pairs examined. No index or hash join is used.
+The engine's `perf_counter()` timer covers running the query, including checking the condition's column names, building result rows and counting work. Generating and loading files, parsing the query and printing results are outside the timer. The join uses nested loops and passes every pair to selection, keeping only matches. It does not store all pairs first. It still checks every pair and uses no index or hash join.
 
-The join counter increases inside the selection loop once per product pair. The selection counter also increases for that pair, so these are two views of the same work and must not be added. `measurements.jsonl` contains the actual counts and unrounded times, saved immediately after each query. Assertions check counts and result sizes after timing; the expected formulas do not supply the measured counters.
+The join counter increases once per pair inside the selection loop. The selection counter also increases for that pair, so the two counts describe the same work and should not be added. `measurements.jsonl` contains the actual counts and unrounded times, saved after each query. The runner checks the counts after timing; it does not fill them in from a formula.
 
 ## Join measurements
 
@@ -32,7 +32,7 @@ The measured count is exactly `n * m` at every size. For each R row, the inner l
 
 ![Log-log plot of measured query times](performance.png)
 
-I fitted a straight line to `log10(n)` and `log10(seconds)` using all seven sizes. The join slope is **2.032**. A slope near 2 means time grows roughly as n²: doubling both inputs gives roughly four times as many comparisons. The fitted slope describes these measurements, not an exact timing guarantee. Background work, CPU temperature and allocation costs can affect the times. The join has one run per size, so the plot does not provide confidence intervals.
+I fitted a straight line to `log10(n)` and `log10(seconds)` using all seven sizes. The join slope is **2.032**. A slope near 2 means time grows roughly as n²: doubling both inputs gives about four times as many comparisons. These times can vary with other computer activity and memory use. The join was run once per size.
 
 ### 3. Selection and projection
 
@@ -48,7 +48,7 @@ At each size I ran `select[a<n/2](R)`, replacing `n/2` with the actual integer, 
 | 32,000 | 0.009283 | 32,000 | 16,000 | 0.020305 | 1 |
 | 64,000 | 0.018236 | 64,000 | 32,000 | 0.041021 | 1 |
 
-Selection has slope **0.986** and projection has slope **1.011**. Selection examines exactly n rows and returns half. Projection visits n rows but produces just one distinct `b` value, so each duplicate check has at most one saved row to compare with. Both are approximately linear for this dataset, while the join checks n² pairs. Projection's result does not mean it is always linear: with many distinct output rows, this implementation's linear duplicate searches can take quadratic time. Input duplicate removal also uses linear searches, so loading can be slow even though it is excluded from query timing.
+Selection has slope **0.986** and projection has slope **1.011**. Selection examines n rows and returns half. Projection visits n rows but produces one distinct `b` value, so checking for duplicates is quick. Both times grow roughly with n for this dataset, while the join checks n² pairs. Projection can be slower with many distinct output rows because this engine checks saved rows one by one. Loading can be slow for the same reason, but loading is outside the query timer.
 
 ### 4. Prediction for one million rows per side
 
@@ -74,12 +74,12 @@ I held n=m=1,000 fixed, regenerated the inputs with different match counts and r
 | 1 | 1,000,000 | 0.302644 | 1,000 |
 | 1,000 | 1,000,000 | 0.482768 | 1,000,000 |
 
-Every run still makes 1,000,000 comparisons because the nested loops visit every pair regardless of the result. Wall time can change: matching pairs must be retained and added to the result, while rejected pairs can be discarded. The all-match case stores one million rows; the zero-match case stores none. These allocation and storage costs explain why equal comparison counts need not give equal wall times. Small timing differences also include measurement noise.
+Every run still makes 1,000,000 comparisons because the nested loops visit every pair. Time can change because matching rows must be saved. The all-match case stores one million rows; the zero-match case stores none. That extra work helps explain why equal comparison counts can have different times. Small differences can also be measurement noise.
 
 ### 6. Making a million-row join feasible
 
-For this equality join, I would replace the all-pairs search with a hash join: group one input by its join key, then look up only matching groups for each row of the other input. With suitable keys, expected work would be near n+m plus the number of output rows, instead of n*m. I would also improve duplicate checking during loading and stream large results to avoid keeping everything in memory. If the data did not fit in memory, I would partition it. A high match rate can still create an enormous output, so no join algorithm removes that cost. These changes are proposals only; the measured engine keeps the required nested-loop algorithm.
+For this equality join, I would use a hash join: group one table by its join key, then look up matching groups for rows in the other table. That should take work closer to n+m plus the output size, instead of n*m. I would also make duplicate checking faster and write large results as they are produced. If the tables did not fit in memory, I would split them into disk partitions. A high match rate can still make the output huge. These are proposed changes; the measured engine uses nested loops.
 
 ## Reproducing the study
 
-From this folder, run `python3 experiment.py --output new-measurements.jsonl` for a fresh experiment. It refuses to overwrite an existing results file and can take a long time. The generator's temporary input file is closed after loading. The saved report uses `measurements.jsonl`; `python3 plot_results.py` reads that file and regenerates `performance.png` with matplotlib 3.10.8. The engine itself needs no third-party package.
+From this folder, run `python3 experiment.py --output new-measurements.jsonl` for a fresh experiment. It takes a long time and will not overwrite an existing results file. This report uses `measurements.jsonl`; `python3 plot_results.py` reads it and redraws `performance.png` with matplotlib 3.10.8. The engine itself uses only the Python standard library.

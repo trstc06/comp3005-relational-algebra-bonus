@@ -152,4 +152,4 @@ I use handwritten recursive descent in `parser.py` because each grammar level ma
 
 Sources: assignment Sections 4, 5, 7 and 11; Robert Nystrom's [Representing Code](https://craftinginterpreters.com/representing-code.html) and [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html).
 
-AI helped draft and review this grammar and code. Its first tokenizer missed relation-file syntax; tests later found missing source positions for execution-depth errors and unhelpful schema mismatch messages. The final grammar review also caught a missing line break between table definitions and missing support for CR line endings in the written rules. These were corrected to match the parser and scanner; see `DESIGN_LOG.md`. I also completed my own days 1-2 reading and RelaX practice.
+AI helped with the first draft, but I checked it against the assignment and my tests. That review found missing relation-file tokens, an error message without a source position, and missing line-break rules in the written grammar. I fixed them as described in `DESIGN_LOG.md`.

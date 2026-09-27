@@ -1,37 +1,37 @@
 # Design log
 
-## 2026-09-20: day 3 grammar and start of days 4-5
+## 2026-09-20: first grammar and tokenizer
 
-I drafted the EBNF with AI assistance, chose precedence levels and left associativity for binary operators, and used Python for a handwritten query tokenizer. I checked the lexical parts of assignment cases 1-9 and six additional scanner checks; all 15 tests passed, but the required parse-tree equivalence check cannot be completed until the parser exists. The tokenizer does not yet scan relation-file fields, and my days 1-2 reading and RelaX practice are still pending; no parser, evaluator or performance results are claimed for this session.
+I drafted the EBNF and chose left grouping for binary operators, then started a handwritten tokenizer in Python with AI help. I checked the lexical parts of cases 1 to 9 and six extra scanner cases; 15 tests passed, but the tokenizer did not yet handle relation files.
 
-## 2026-09-21: simplify the grammar document
+## 2026-09-21: grammar wording
 
-I shortened the explanations and replaced technical wording with plain English while keeping both EBNF blocks unchanged. I checked that the precedence tables, keyword rules, string and number rules, and planned parsing approach remained; the day 13 requirements are still marked as unfinished.
+I made the grammar explanations shorter and checked that the EBNF, precedence table, keywords, strings and numbers still matched the draft. This was a wording change; the parser and later grammar examples were not finished yet.
 
-## 2026-09-21: complete days 4-5 tokenization
+## 2026-09-21: relation-file tokenizer
 
-I added relation-file scanning and checked the assignment's example table, whole-field number recognition, quoted values, comments, row boundaries and original token positions. The earlier AI-assisted tokenizer was incomplete because it only accepted queries; comparing it with the relation-definition grammar showed that it could not read braces or distinguish bare table values from names, so I added a separate relation mode without adding a parser. All 24 tests now pass, including the lexical checks for cases 1-9 and command-line error handling; full parsing and the identical-tree check for cases 1-2 remain for days 6-7.
+The first AI-assisted tokenizer handled queries but missed relation-file syntax. I found this by comparing it with the relation grammar: it could not scan braces or bare row values, so I added relation-file scanning and tested the assignment's sample table. All 24 tokenizer and command-line checks passed.
 
-## 2026-09-21: days 6-7 parser and tree printer
+## 2026-09-21: parser and tree printer
 
-I implemented handwritten recursive descent, tree nodes and a `--tree` command, then checked precedence, left associativity, nested conditions, contextual keywords and relation-definition syntax. All 46 tests passed, including identical trees for cases 1-2, the parser checks for cases 10-17, and positioned errors for missing parentheses and empty projections; case 14's execution check still needs the days 8-9 operators. I also documented a concrete case 11 example where right grouping gives a different result; no test failures occurred in this session, and I have not claimed engine results or invented AI mistakes.
+I wrote a recursive descent parser and a tree printer, then tested grouping, nested conditions and errors for missing parentheses or empty projections. Cases 1 and 2 produced the same tree, and all 46 tests passed. I also wrote down a case 11 example where the other grouping gives a different answer.
 
-## 2026-09-21: days 8-9 operators and schemas
+## 2026-09-21: operators and schemas
 
-I added table loading, the six core operators, rename and theta join with AI assistance, using nested loops and my own tuple equality for duplicate removal. I kept column types and qualifiers in the schema, rejected repeated projection columns, and documented self-joins and unknown types for initially empty tables. All 69 tests passed, including cases 18-25, case 14's nested execution and the case 11 grouping example; no test failures occurred, and the day 10 error review and later tasks remain unfinished.
+I added table loading, the relational algebra operators, rename and theta join. I checked duplicate removal, column types, ambiguous names, self-joins and cases 18 to 25; all 69 tests passed. Empty tables needed special care because their columns have no values from which to infer types.
 
-## 2026-09-22: day 10 error handling
+## 2026-09-22: error handling
 
-I tested all five error categories through the real command-line program, including invalid table files, empty inputs, skipped condition branches and excessive query depth. Two new diagnostic checks initially failed: the earlier AI-assisted execution-depth handler omitted a source position, and the column-order error did not identify the conflicting columns; I added the root operation's position and specific schema mismatch details. All 78 tests now pass, with the error tests checking nonzero exit codes, clear messages and no Python tracebacks; day 11 and later work remain pending.
+I tested the five error categories through the command-line program. Two checks failed: the AI-assisted execution-depth handler did not report a source position, and a column-order error did not name the conflicting columns. I fixed both messages and reran the tests; all 78 passed.
 
-## 2026-09-22: day 11 data generator and instrumentation
+## 2026-09-22: generator and counters
 
-I added a deterministic generator with separate R and S sizes and an exact number of S matches per R row, using unique a and c values so duplicate removal does not shrink the inputs. I added loop-based join and selection counters, evaluation timing and output size through `--stats`, then checked small inputs, filtered and repeated joins, zero/full match rates and counter reset; all 87 tests passed with no test failures this session. The join still materializes its product, which is a memory limitation for the larger experiment; the day 12 measurements and report have not been completed.
+I wrote a generator with separate R and S sizes and a chosen number of matches per R row. I added counters inside the join and selection loops, timed query execution and tested zero, one and full match rates; all 87 tests passed. I then noticed that the join stored every product pair, which would use too much memory for the required large experiment.
 
-## 2026-09-23: days 12-13 performance study and final grammar
+## 2026-09-23: experiment and final grammar
 
-The earlier AI-assisted join stored the whole product, which would require billions of intermediate rows at the required sizes; reviewing the largest experiment exposed this memory problem, so I changed the product to feed pairs directly to selection while still comparing every pair with nested loops. I added a reproducible experiment runner, checked streamed joins against materialized product-plus-selection, and finished the grammar's two-tree example; the grammar review also found and corrected missing line-break rules between definitions and CR line endings. All 89 tests passed. The full experiment finished on September 23: all seven join sizes reached the expected comparison counts, and the match-rate trials were saved in `measurements.jsonl`.
+The earlier AI-assisted join built the full product before filtering it. I found the problem while planning the 64,000 by 64,000 run: that would store 4,096,000,000 intermediate rows, so I changed the join to pass each pair straight to selection while still checking every pair. I tested that it gives the same results, corrected the written grammar's line-break rules, and ran the full experiment; all 89 tests passed and the measurements were saved.
 
-## 2026-09-25: report and final hand-in review
+## 2026-09-25: report and hand-in check
 
-I checked all 115 saved records against the required sizes and output counts, made the log-log plot, and wrote `REPORT.md` from the actual timings. The 64,000-by-64,000 join took 1,408.401873 seconds and counted 4,096,000,000 pairs; the measured join slope is 2.032. During the hand-in review I found that my tests were still in the project root although Section 9 asks for `tests/`, so I moved them there, fixed the two command-line test paths and reran all 89 tests successfully. The repository link, my own RelaX practice and reading, and the personal video explanation still require my participation.
+I used the saved measurements to write `REPORT.md` and draw the log-log plot. The largest join took 1,408.401873 seconds and counted 4,096,000,000 pairs. During the hand-in check I found the tests in the project root instead of the required `tests/` folder, moved them, fixed two test paths and reran all 89 tests successfully.
