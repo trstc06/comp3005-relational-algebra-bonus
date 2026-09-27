@@ -29,6 +29,8 @@ Use a relation name when a column name is ambiguous, as in `Emp.DID`. To join a 
 python3 ra.py --relations relations.txt --query "rename[E2](Emp) join[Emp.MgrID=E2.EID] Emp"
 ```
 
+Without `rename`, both copies would have columns such as `Emp.EID`. Their names would collide, so the join condition could not say which copy of `Emp` it means. `rename[E2](Emp)` makes the left copy's columns start with `E2` and leaves the right copy as `Emp`.
+
 The program reports lexical, syntax, name, schema and type errors. Lexical and syntax errors include a line and column. Invalid queries exit with an error message instead of a Python traceback.
 
 ## Generate data and measure queries
