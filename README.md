@@ -97,4 +97,4 @@ The experiment generates temporary input files and runs all required sizes up to
 
 All 89 tests pass, covering required cases 1-25, day 10 error handling and generation, measurements, streamed join equivalence and both results in the grammar ambiguity example. The tests also check input validation, schema preservation, numeric equality and conditions on empty tables. `GRAMMAR.md` contains the grammar and grouping decisions.
 
-The day 12 experiment is recorded in `REPORT.md` and `measurements.jsonl`. `GRAMMAR.md` includes the ambiguity trees and final rules. The personal RelaX practice, reading, video explanation and Brightspace submission are still to be done by the student.
+The day 12 experiment is recorded in `REPORT.md` and `measurements.jsonl`. `GRAMMAR.md` includes the ambiguity trees and final rules. The student has completed the personal RelaX practice and reading. The video explanation and Brightspace submission remain.
