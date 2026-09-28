@@ -4,7 +4,7 @@ Dates are approximate, based on the order of my working sessions.
 
 ## 2026-09-14: RelaX practice
 
-I practised writing and running relational algebra queries in RelaX before starting the engine. Seeing how selections, projections, joins and set operations were expressed helped me decide what the project needed to support. I did not write code in this session.
+I practised writing and running r.a queries in RelaX before starting the engine. Seeing how selections, projections, joins and set operations were expressed helped me decide what the project needed to support. I did not write any code yet.
 
 ## 2026-09-17: grammar reading
 
