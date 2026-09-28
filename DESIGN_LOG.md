@@ -37,3 +37,11 @@ The earlier AI-assisted join materialized the product before selecting matches. 
 ## 2026-09-25: report and submission check
 
 I used the measurements to write `REPORT.md` and make its log-log plot. The largest join took 1,408.401873 seconds and checked 4,096,000,000 pairs. During the submission check, I found the test files in the project root instead of the required `tests/` folder, moved them, fixed their paths and confirmed that all 89 tests passed.
+
+## 2026-09-27: documentation check
+
+I reviewed `README.md`, `GRAMMAR.md` and `REPORT.md` to make the explanations easier to follow while keeping the required DBMS terms. The README still did not clearly explain why the self-join needs `rename`, so I added that explanation and checked the tests again.
+
+## 2026-09-28: submission files and log
+
+I checked the submitted files against the assignment list and found an optional plotting script and raw results export that were not required. I removed those files, fixed their references in the README and report, and tested a fresh GitHub checkout; all 89 tests passed. I also revised this log so its entries describe the work and problems more plainly.
