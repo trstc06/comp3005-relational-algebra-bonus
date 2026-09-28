@@ -1,37 +1,37 @@
 # Design log
 
-## 2026-09-20: first grammar and tokenizer
+## 2026-09-20: grammar and first tokenizer
 
-I drafted the EBNF and chose left grouping for binary operators, then started a handwritten tokenizer in Python with AI help. I checked the lexical parts of cases 1 to 9 and six extra scanner cases; 15 tests passed, but the tokenizer did not yet handle relation files.
+I started by writing the EBNF and choosing how operators group. I then worked on a handwritten Python tokenizer for query text. Compact input such as `select[x1=3](R)` was a useful check, but relation-file input was not handled yet.
 
-## 2026-09-21: grammar wording
+## 2026-09-21: clearer grammar notes
 
-I made the grammar explanations shorter and checked that the EBNF, precedence table, keywords, strings and numbers still matched the draft. This was a wording change; the parser and later grammar examples were not finished yet.
+I shortened the grammar explanations and checked the rules for precedence, names, strings and numbers against the examples. This was a writing pass, so I did not change the parser or claim that the full grammar was finished.
 
-## 2026-09-21: relation-file tokenizer
+## 2026-09-21: relation-file tokens
 
-The first AI-assisted tokenizer handled queries but missed relation-file syntax. I found this by comparing it with the relation grammar: it could not scan braces or bare row values, so I added relation-file scanning and tested the assignment's sample table. All 24 tokenizer and command-line checks passed.
+The first AI-assisted tokenizer covered queries but missed part of the relation-file format. I found this by comparing it with the assignment's example: it could not scan braces or bare row values. I added those tokens and checked that the sample table could be read.
 
 ## 2026-09-21: parser and tree printer
 
-I wrote a recursive descent parser and a tree printer, then tested grouping, nested conditions and errors for missing parentheses or empty projections. Cases 1 and 2 produced the same tree, and all 46 tests passed. I also wrote down a case 11 example where the other grouping gives a different answer.
+I added a recursive descent parser and a printer for its parse tree. I used cases 10 and 11 to check left grouping, then tried nested conditions and malformed queries to check that the parser reported useful errors. I also wrote down a case 11 data example where right grouping would give a different result.
 
 ## 2026-09-21: operators and schemas
 
-I added table loading, the relational algebra operators, rename and theta join. I checked duplicate removal, column types, ambiguous names, self-joins and cases 18 to 25; all 69 tests passed. Empty tables needed special care because their columns have no values from which to infer types.
+I added relation loading and the operations that evaluate the parse tree. I checked duplicate removal, column names and types, ambiguous attributes and the renamed self-join. Empty tables took extra care because there are no values from which to infer column types.
 
-## 2026-09-22: error handling
+## 2026-09-22: error messages
 
-I tested the five error categories through the command-line program. Two checks failed: the AI-assisted execution-depth handler did not report a source position, and a column-order error did not name the conflicting columns. I fixed both messages and reran the tests; all 78 passed.
+I tested the five error categories through the command line. The AI-assisted execution-depth error lacked a source position, and a schema error about column order did not say which columns differed. I found both by running the error cases, fixed the messages and reran the tests.
 
 ## 2026-09-22: generator and counters
 
-I wrote a generator with separate R and S sizes and a chosen number of matches per R row. I added counters inside the join and selection loops, timed query execution and tested zero, one and full match rates; all 87 tests passed. I then noticed that the join stored every product pair, which would use too much memory for the required large experiment.
+I added the R and S data generator and counters inside the selection and join loops. Small runs with zero, one and many matches showed that the comparison count stayed the same while the number of output rows changed. Before the large experiment, I noticed that the join still built the whole product in memory, so that needed a separate fix.
 
-## 2026-09-23: experiment and final grammar
+## 2026-09-23: large experiment and grammar check
 
-The earlier AI-assisted join built the full product before filtering it. I found the problem while planning the 64,000 by 64,000 run: that would store 4,096,000,000 intermediate rows, so I changed the join to pass each pair straight to selection while still checking every pair. I tested that it gives the same results, corrected the written grammar's line-break rules, and ran the full experiment; all 89 tests passed and the measurements were saved.
+The earlier AI-assisted join materialized the product before selecting matches. Planning the 64,000 by 64,000 run exposed the problem: it would create 4,096,000,000 intermediate rows. I changed the join to pass pairs to selection as they are generated, checked that results and counters stayed correct, corrected the grammar's line-break rules and ran the measurements.
 
-## 2026-09-25: report and hand-in check
+## 2026-09-25: report and submission check
 
-I used the saved measurements to write `REPORT.md` and draw the log-log plot. The largest join took 1,408.401873 seconds and counted 4,096,000,000 pairs. During the hand-in check I found the tests in the project root instead of the required `tests/` folder, moved them, fixed two test paths and reran all 89 tests successfully.
+I used the measurements to write `REPORT.md` and make its log-log plot. The largest join took 1,408.401873 seconds and checked 4,096,000,000 pairs. During the submission check, I found the test files in the project root instead of the required `tests/` folder, moved them, fixed their paths and confirmed that all 89 tests passed.
