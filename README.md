@@ -17,7 +17,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 
 ## What the files do
 
-`tokenizer.py` splits text into tokens. `parser.py` turns query tokens into a parse tree. `engine.py` follows that tree to run the operators. `ra.py` handles the command line and prints results or errors. `generator.py` makes relation files for the performance study. `experiment.py` runs the measurements, and `plot_results.py` draws the plot from the saved results.
+`tokenizer.py` splits text into tokens. `parser.py` turns query tokens into a parse tree. `engine.py` follows that tree to run the operators. `ra.py` handles the command line and prints results or errors. `generator.py` makes relation files for the performance study. `experiment.py` runs the measurements.
 
 The engine supports `select`, `project`, `rename`, `times`, `join`, `union`, `intersect` and `minus`. Selection keeps rows that meet a condition. Projection keeps chosen columns and removes duplicate rows. Set operations require the same column names, order and types on both sides. A join checks pairs with nested loops and keeps both join columns. It passes each pair to selection without storing the whole product first.
 
@@ -53,7 +53,7 @@ The generator refuses to overwrite an existing file. In this example, each R row
 
 For the example, both `join_pairs` and `selection_rows` are 12 because they count the same 3 by 4 pair checks. The counters increase during execution, not from a size formula.
 
-[REPORT.md](REPORT.md) explains the full performance study. `measurements.jsonl` holds its raw results, and `performance.png` is the log-log plot. To repeat the study, run `python3 experiment.py --output new-measurements.jsonl`. It takes a long time and will not overwrite an existing file. Run `python3 plot_results.py` to redraw the plot from `measurements.jsonl`.
+[REPORT.md](REPORT.md) explains the full performance study and includes its log-log plot, `performance.png`. To repeat the measurements, run `python3 experiment.py --output new-measurements.jsonl`. It takes a long time and will not overwrite an existing file.
 
 ## Limits
 

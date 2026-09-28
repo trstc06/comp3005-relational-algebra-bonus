@@ -8,7 +8,7 @@ I used `experiment.py` to generate relation files, load them and run the queries
 
 The engine's `perf_counter()` timer covers running the query, including checking the condition's column names, building result rows and counting work. Generating and loading files, parsing the query and printing results are outside the timer. The join uses nested loops and passes every pair to selection, keeping only matches. It does not store all pairs first. It still checks every pair and uses no index or hash join.
 
-The join counter increases once per pair inside the selection loop. The selection counter also increases for that pair, so the two counts describe the same work and should not be added. `measurements.jsonl` contains the actual counts and unrounded times, saved after each query. The runner checks the counts after timing; it does not fill them in from a formula.
+The join counter increases once per pair inside the selection loop. The selection counter also increases for that pair, so the two counts describe the same work and should not be added. The experiment runner recorded actual counts and unrounded times after each query. The runner checks the counts after timing; it does not fill them in from a formula.
 
 ## Join measurements
 
@@ -82,4 +82,4 @@ For this equality join, I would use a hash join: group one table by its join key
 
 ## Reproducing the study
 
-From this folder, run `python3 experiment.py --output new-measurements.jsonl` for a fresh experiment. It takes a long time and will not overwrite an existing results file. This report uses `measurements.jsonl`; `python3 plot_results.py` reads it and redraws `performance.png` with matplotlib 3.10.8. The engine itself uses only the Python standard library.
+From this folder, run `python3 experiment.py --output new-measurements.jsonl` for a fresh experiment. It takes a long time and will not overwrite an existing results file. The plot in this report was made from the measured times with matplotlib 3.10.8. The engine itself uses only the Python standard library.
