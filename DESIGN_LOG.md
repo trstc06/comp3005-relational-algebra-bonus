@@ -2,9 +2,21 @@
 
 Dates are approximate, based on the order of my working sessions.
 
-## 2026-09-20: grammar and first tokenizer
+## 2026-09-14: RelaX practice
 
-I started by writing the EBNF and choosing how operators group. I then worked on a handwritten Python tokenizer for query text. Compact input such as `select[x1=3](R)` was a useful check, but relation-file input was not handled yet.
+I practised writing and running relational algebra queries in RelaX before starting the engine. Seeing how selections, projections, joins and set operations were expressed helped me decide what the project needed to support. I did not write code in this session.
+
+## 2026-09-17: grammar reading
+
+I read about context-free grammars, EBNF and recursive descent. The main issue to settle before coding was how a grammar would show operator precedence and grouping. I made notes but did not write code yet.
+
+## 2026-09-19: first EBNF draft
+
+I drafted the EBNF and wrote down my choice of precedence and left grouping for the binary operators. I kept `A union B minus C` as a case to check once the parser could print a tree. This gave the tokenizer and parser a written target.
+
+## 2026-09-20: first tokenizer
+
+With the grammar draft in place, I worked on a handwritten Python tokenizer for query text. Compact input such as `select[x1=3](R)` was a useful check, but relation-file input was not handled yet.
 
 ## 2026-09-20: clearer grammar notes
 
