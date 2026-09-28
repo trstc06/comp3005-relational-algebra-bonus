@@ -1,7 +1,7 @@
 """Recursive descent parser and tree printer. No query execution."""
 
 from dataclasses import dataclass, field
-from tokenizer import Token, tokenize
+from .tokenizer import Token, tokenize
 
 
 @dataclass(frozen=True)

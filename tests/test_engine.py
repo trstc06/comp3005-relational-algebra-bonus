@@ -5,7 +5,7 @@ from contextlib import redirect_stderr, redirect_stdout
 from decimal import Decimal
 from io import StringIO
 from unittest.mock import mock_open, patch
-from engine import ExecutionError, execute, format_relation, load_relations, tuple_equal
+from source.engine import ExecutionError, execute, format_relation, load_relations, tuple_equal
 from ra import main
 
 

@@ -17,7 +17,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 
 ## What the files do
 
-`tokenizer.py` splits text into tokens. `parser.py` turns query tokens into a parse tree. `engine.py` follows that tree to run the operators. `ra.py` handles the command line and prints results or errors. `generator.py` makes relation files for the performance study. `experiment.py` runs the measurements.
+`ra.py` starts the command-line program. The implementation is in `source/`: `tokenizer.py` splits text into tokens, `parser.py` builds and prints parse trees, `engine.py` runs the operators, and `cli.py` prints results or errors. `generator.py` makes relation files for the performance study, and `experiment.py` runs the measurements.
 
 The engine supports `select`, `project`, `rename`, `times`, `join`, `union`, `intersect` and `minus`. Selection keeps rows that meet a condition. Projection keeps chosen columns and removes duplicate rows. Set operations require the same column names, order and types on both sides. A join checks pairs with nested loops and keeps both join columns. It passes each pair to selection without storing the whole product first.
 
@@ -35,10 +35,10 @@ The program reports lexical, syntax, name, schema and type errors. Lexical and s
 
 ## Generate data and measure queries
 
-`generator.py` writes `R(a,b)` and `S(b,c)`. Set the row counts separately and use `--matches` to choose how many S rows match each R row. For example:
+`source/generator.py` writes `R(a,b)` and `S(b,c)`. Set the row counts separately and use `--matches` to choose how many S rows match each R row. For example:
 
 ```sh
-python3 generator.py --r-rows 3 --s-rows 4 --matches 2 --output generated.txt
+python3 -m source.generator --r-rows 3 --s-rows 4 --matches 2 --output generated.txt
 python3 ra.py --relations generated.txt --query "R join[R.b=S.b] S" --stats
 ```
 
@@ -53,7 +53,7 @@ The generator refuses to overwrite an existing file. In this example, each R row
 
 For the example, both `join_pairs` and `selection_rows` are 12 because they count the same 3 by 4 pair checks. The counters increase during execution, not from a size formula.
 
-[REPORT.md](REPORT.md) explains the full performance study and includes its log-log plot, `performance.png`. To repeat the measurements, run `python3 experiment.py --output new-measurements.jsonl`. It takes a long time and will not overwrite an existing file.
+[REPORT.md](REPORT.md) explains the full performance study and includes its log-log plot, `performance.png`. To repeat the measurements, run `python3 -m source.experiment --output new-measurements.jsonl`. It takes a long time and will not overwrite an existing file.
 
 ## Limits
 

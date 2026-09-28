@@ -3,7 +3,7 @@
 from dataclasses import dataclass, replace
 from decimal import Decimal
 from time import perf_counter
-from parser import ParseError, parse
+from .parser import ParseError, parse
 
 
 class ExecutionError(Exception):

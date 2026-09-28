@@ -1,9 +1,9 @@
 """Handwritten tokenizer for queries and relation files, without regex.
 
-From this folder:
-    python3 tokenizer.py 'select[x1=3](R)'
-    python3 tokenizer.py --relations relations.txt
-    python3 -m unittest test_tokenizer.py -v
+From the project folder:
+    python3 -m source.tokenizer 'select[x1=3](R)'
+    python3 -m source.tokenizer --relations relations.txt
+    python3 -m unittest discover -s tests -p 'test_tokenizer.py' -v
 
 Output shows line:column, token kind, and value. This reads tokens only;
 the parser, table validation, and execution are later project stages.
@@ -174,8 +174,8 @@ def tokenize(source, *, relations=False):
 def main():
     relations = len(sys.argv) == 3 and sys.argv[1] == '--relations'
     if not relations and len(sys.argv) != 2:
-        print('Usage: python3 tokenizer.py "QUERY"\n'
-              '       python3 tokenizer.py --relations FILE', file=sys.stderr)
+        print('Usage: python3 -m source.tokenizer "QUERY"\n'
+              '       python3 -m source.tokenizer --relations FILE', file=sys.stderr)
         return 2
     try:
         # Preserve CRLF so token offsets still match the original file.

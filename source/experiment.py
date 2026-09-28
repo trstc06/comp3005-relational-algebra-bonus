@@ -8,8 +8,8 @@ from pathlib import Path
 import platform
 import tempfile
 
-from engine import Statistics, execute, load_relations
-from generator import generate
+from .engine import Statistics, execute, load_relations
+from .generator import generate
 
 SIZES = (1000, 2000, 4000, 8000, 16000, 32000, 64000)
 

@@ -4,8 +4,8 @@ import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 from unittest.mock import patch
-from tokenizer import main
-from tokenizer import LexicalError, tokenize
+from source.tokenizer import main
+from source.tokenizer import LexicalError, tokenize
 
 
 def signature(source):

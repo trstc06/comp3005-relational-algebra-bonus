@@ -8,8 +8,8 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-from engine import Statistics, execute, load_relations
-from generator import generate
+from source.engine import Statistics, execute, load_relations
+from source.generator import generate
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -88,14 +88,14 @@ class MeasurementTests(unittest.TestCase):
 
     def test_timer_wraps_evaluation(self):
         stats = Statistics()
-        with patch('engine.perf_counter', side_effect=[10.0, 10.25]):
+        with patch('source.engine.perf_counter', side_effect=[10.0, 10.25]):
             execute('R', tables(3, 4, 1), stats)
         self.assertEqual(stats.wall_seconds, 0.25)
 
     def test_cli_generator_and_statistics(self):
         with tempfile.TemporaryDirectory() as folder:
             path = str(Path(folder) / 'input.txt')
-            command = [sys.executable, '-B', str(ROOT / 'generator.py'), '--r-rows', '3',
+            command = [sys.executable, '-B', str(ROOT / 'source' / 'generator.py'), '--r-rows', '3',
                        '--s-rows', '4', '--matches', '2', '--output', path]
             generated = subprocess.run(command, capture_output=True, text=True, timeout=10)
             self.assertEqual(generated.returncode, 0, generated.stderr)
@@ -115,7 +115,7 @@ class MeasurementTests(unittest.TestCase):
     def test_cli_rejects_invalid_options(self):
         with tempfile.TemporaryDirectory() as folder:
             path = str(Path(folder) / 'input.txt')
-            result = subprocess.run([sys.executable, '-B', str(ROOT / 'generator.py'),
+            result = subprocess.run([sys.executable, '-B', str(ROOT / 'source' / 'generator.py'),
                                      '--r-rows', '3', '--s-rows', '4', '--matches', '5', '--output', path],
                                     capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 2)

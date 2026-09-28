@@ -148,7 +148,7 @@ Each repetition combines the existing left tree with the next operand. This forc
 
 ## Parser and sources
 
-I use handwritten recursive descent in `parser.py` because each grammar level maps to a short method that is easy to trace and gives useful errors. Methods read each grammar level, and loops handle repeated binary operators. The resulting tree records the grouping without running the query. A rule starting with itself, such as `expression = expression, "minus", primary`, would repeatedly call itself without reading input. This is left recursion. My `set-expression` avoids it by reading `intersection` first, then repeating operator-operand pairs.
+I use handwritten recursive descent in `source/parser.py` because each grammar level maps to a short method that is easy to trace and gives useful errors. Methods read each grammar level, and loops handle repeated binary operators. The resulting tree records the grouping without running the query. A rule starting with itself, such as `expression = expression, "minus", primary`, would repeatedly call itself without reading input. This is left recursion. My `set-expression` avoids it by reading `intersection` first, then repeating operator-operand pairs.
 
 Sources: assignment Sections 4, 5, 7 and 11; Robert Nystrom's [Representing Code](https://craftinginterpreters.com/representing-code.html) and [Parsing Expressions](https://craftinginterpreters.com/parsing-expressions.html).
 

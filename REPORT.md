@@ -4,7 +4,7 @@ Machine: MacBook Air (Mac15,13), Apple M3, 8 CPU cores, 16 GB memory. OS: macOS 
 
 ## Setup
 
-I used `experiment.py` to generate relation files, load them and run the queries. R has columns `(a,b)` and S has `(b,c)`. All R rows have `b=0`; in the main experiment exactly one S row has `b=0`. The `a` and `c` values are unique, so the input rows stay distinct. Each R row matches one S row. This is a controlled dataset: many rows share the same join key.
+I used `source/experiment.py` to generate relation files, load them and run the queries. R has columns `(a,b)` and S has `(b,c)`. All R rows have `b=0`; in the main experiment exactly one S row has `b=0`. The `a` and `c` values are unique, so the input rows stay distinct. Each R row matches one S row. This is a controlled dataset: many rows share the same join key.
 
 The engine's `perf_counter()` timer covers running the query, including checking the condition's column names, building result rows and counting work. Generating and loading files, parsing the query and printing results are outside the timer. The join uses nested loops and passes every pair to selection, keeping only matches. It does not store all pairs first. It still checks every pair and uses no index or hash join.
 
@@ -82,4 +82,4 @@ For this equality join, I would use a hash join: group one table by its join key
 
 ## Reproducing the study
 
-From this folder, run `python3 experiment.py --output new-measurements.jsonl` for a fresh experiment. It takes a long time and will not overwrite an existing results file. The plot in this report was made from the measured times with matplotlib 3.10.8. The engine itself uses only the Python standard library.
+From this folder, run `python3 -m source.experiment --output new-measurements.jsonl` for a fresh experiment. It takes a long time and will not overwrite an existing results file. The plot in this report was made from the measured times with matplotlib 3.10.8. The engine itself uses only the Python standard library.

@@ -4,8 +4,8 @@ import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 from unittest.mock import patch
-from parser import Node, ParseError, format_tree, parse
-from tokenizer import LexicalError
+from source.parser import Node, ParseError, format_tree, parse
+from source.tokenizer import LexicalError
 from ra import main
 
 
