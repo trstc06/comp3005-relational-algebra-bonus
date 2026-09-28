@@ -153,14 +153,12 @@ def bind_condition(node, columns):
     return compare
 
 
-def select(relation, condition, stats=None, *, joining=False):
+def select(relation, condition, stats=None):
     matches = bind_condition(condition, relation.columns)
     rows = []
     for row in relation.rows:
         if stats is not None:
             stats.selection_rows += 1
-            if joining:
-                stats.join_pairs += 1
         if matches(row):
             rows.append(row)
     return Relation(relation.columns, tuple(rows))
@@ -195,6 +193,18 @@ def times(left, right, *, materialize=True):
 
     rows = pairs()
     return Relation(columns, tuple(rows) if materialize else rows)
+
+
+def join(left, right, condition, stats=None):
+    product = times(left, right, materialize=False)
+    matches = bind_condition(condition, product.columns)
+    rows = []
+    for pair in product.rows:
+        if stats is not None:
+            stats.join_pairs += 1
+        if matches(pair):
+            rows.append(pair)
+    return Relation(product.columns, tuple(rows))
 
 
 def compatible(left, right):
@@ -235,10 +245,8 @@ def evaluate(tree, tables, stats=None):
         return rename(relation, parameter.value)
     if tree.kind == 'Join':
         condition, left, right = tree.children
-        # Feed every product pair to selection without storing rejected pairs.
-        product = times(evaluate(left, tables, stats), evaluate(right, tables, stats),
-                        materialize=False)
-        return select(product, condition, stats, joining=True)
+        return join(evaluate(left, tables, stats), evaluate(right, tables, stats),
+                    condition, stats)
     left = evaluate(tree.children[0], tables, stats)
     right = evaluate(tree.children[1], tables, stats)
     if tree.kind == 'Times':

@@ -19,7 +19,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -v
 
 `ra.py` starts the command-line program. The implementation is in `source/`: `tokenizer.py` splits text into tokens, `parser.py` builds and prints parse trees, `engine.py` runs the operators, and `cli.py` prints results or errors. `generator.py` makes relation files for the performance study, and `experiment.py` runs the measurements.
 
-The engine supports `select`, `project`, `rename`, `times`, `join`, `union`, `intersect` and `minus`. Selection keeps rows that meet a condition. Projection keeps chosen columns and removes duplicate rows. Set operations require the same column names, order and types on both sides. A join checks pairs with nested loops and keeps both join columns. It passes each pair to selection without storing the whole product first.
+The engine supports `select`, `project`, `rename`, `times`, `join`, `union`, `intersect` and `minus`. Selection keeps rows that meet a condition. Projection keeps chosen columns and removes duplicate rows. Set operations require the same column names, order and types on both sides. A join checks pairs with nested loops and keeps both join columns. It applies the join condition to each pair without storing the whole product first.
 
 A schema is the list of columns and their types. Types come from the input values. Numbers use Python's `Decimal`, so `1` and `1.0` compare equal. Strings are case-sensitive. Comparing a number with a string is a type error. An empty input table has unknown column types because the file format does not declare them. Even an empty result keeps its column names and known types.
 
@@ -47,11 +47,11 @@ The generator refuses to overwrite an existing file. In this example, each R row
 | Field | Meaning |
 | --- | --- |
 | `join_pairs` | Pairs checked by joins. |
-| `selection_rows` | Rows checked by selections, including the selection inside a join. |
+| `selection_rows` | Rows checked by `select` operations. Join pairs are counted separately. |
 | `wall_seconds` | Time spent running the query, excluding loading, parsing and printing. |
 | `output_rows` | Rows in the final result. |
 
-For the example, both `join_pairs` and `selection_rows` are 12 because they count the same 3 by 4 pair checks. The counters increase during execution, not from a size formula.
+For the example, `join_pairs` is 12 and `selection_rows` is 0 because the query has a join but no separate `select`. The counters increase during execution, not from a size formula.
 
 [REPORT.md](REPORT.md) explains the full performance study and includes its log-log plot, `performance.png`. To repeat the measurements, run `python3 -m source.experiment --output new-measurements.jsonl`. It takes a long time and will not overwrite an existing file.
 

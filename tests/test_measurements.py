@@ -34,7 +34,7 @@ class MeasurementTests(unittest.TestCase):
                 result = execute('R join[R.b=S.b] S', data, stats)
                 self.assertEqual(len(result.rows), n * k)
                 self.assertEqual(stats.join_pairs, n * m)
-                self.assertEqual(stats.selection_rows, n * m)
+                self.assertEqual(stats.selection_rows, 0)
                 self.assertEqual(stats.output_rows, n * k)
                 self.assertGreaterEqual(stats.wall_seconds, 0)
 
@@ -63,13 +63,13 @@ class MeasurementTests(unittest.TestCase):
                 result = execute(f'R join[{condition}] S', data, stats)
                 expected = execute(f'select[{condition}](R times S)', data)
                 self.assertEqual(result, expected)
-                self.assertEqual((stats.join_pairs, stats.selection_rows), (12, 12))
+                self.assertEqual((stats.join_pairs, stats.selection_rows), (12, 0))
 
     def test_join_after_filter_uses_filtered_input(self):
         stats = Statistics()
         execute('select[a<2](R) join[R.b=S.b] S', tables(3, 4, 1), stats)
         self.assertEqual(stats.join_pairs, 8)
-        self.assertEqual(stats.selection_rows, 11)  # 3 filter rows + 8 join pairs.
+        self.assertEqual(stats.selection_rows, 3)  # Only the explicit filter examines rows.
 
     def test_multiple_joins_accumulate(self):
         stats = Statistics()
@@ -104,7 +104,7 @@ class MeasurementTests(unittest.TestCase):
                                     capture_output=True, text=True, timeout=10)
             self.assertEqual(result.returncode, 0, result.stderr)
             stats = json.loads(result.stderr)
-            self.assertEqual((stats['join_pairs'], stats['selection_rows'], stats['output_rows']), (12, 12, 6))
+            self.assertEqual((stats['join_pairs'], stats['selection_rows'], stats['output_rows']), (12, 0, 6))
             self.assertIn('(R.a, R.b, S.b, S.c)', result.stdout)
             original = Path(path).read_bytes()
             repeated = subprocess.run(command, capture_output=True, text=True, timeout=10)

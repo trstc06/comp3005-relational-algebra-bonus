@@ -21,6 +21,7 @@ def measure(stream, data, query, n, matches, group, trial):
                   trial=trial, **asdict(stats))
     if group in ('join', 'match-rate'):
         assert stats.join_pairs == n * n
+        assert stats.selection_rows == 0
         assert stats.output_rows == n * matches
     elif group == 'select':
         assert stats.selection_rows == n and len(result.rows) == n // 2
